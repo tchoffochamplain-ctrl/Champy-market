@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Champy-Marché</title>
 
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+header {
+    background: #0d47a1;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    background: #ff9800;
+    padding: 12px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.hero {
+    padding: 40px 20px;
+    text-align: center;
+    background: white;
+}
+.hero h2 {
+    color: #0d47a1;
+}
+button {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.products {
+    padding: 20px;
+    text-align: center;
+}
+.product {
+    background: white;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 10px;
+}
+footer {
+    background: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>CHAMPY-MARCHÉ</h1>
+<p>Votre boutique en ligne au Cameroun</p>
+</header>
+
+<nav>
+<a href="#">Accueil</a>
+<a href="#produits">Produits</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+<h2>Bienvenue chez Champy-Marché</h2>
+<p>Découvrez nos chemises de qualité à des prix accessibles.</p>
+<button onclick="contacter()">Commander maintenant</button>
+</section>
+
+<section class="products" id="produits">
+<h2>Nos produits</h2>
+
+<div class="product">
+<h3>Chemise classique</h3>
+<p>Prix : 5 000 FCFA</p>
+<button onclick="contacter()">Commander</button>
+</div>
+
+<div class="product">
+<h3>Chemise premium</h3>
+<p>Prix : 10 000 FCFA</p>
+<button onclick="contacter()">Commander</button>
+</div>
+
+</section>
+
+<footer id="contact">
+<p>Champy-Marché | Douala, Cameroun</p>
+<p>Contactez-nous pour vos commandes</p>
+</footer>
+
+<script>
+function contacter() {
+    window.open("https://wa.me/237657923207", "_blank");
+}
+</script>
+
+</body>
+</html>
