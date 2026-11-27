@@ -224,6 +224,22 @@ footer {
 
     <div class="product">
       <h3>Chemise classique</h3>
+      <label>Taille :</label>
+<select id="taille-classique">
+  <option value="S">S</option>
+  <option value="M">M</option>
+  <option value="L">L</option>
+  <option value="XL">XL</option>
+  <option value="XXL">XXL</option>
+</select>
+
+<label>Couleur :</label>
+<select id="couleur-classique">
+  <option value="Blanc">Blanc</option>
+  <option value="Noir">Noir</option>
+  <option value="Bleu">Bleu</option>
+  <option value="Rouge">Rouge</option>
+</select>
       <p>Élégance et confort au quotidien.</p>
       <p class="price">5 000 FCFA</p>
       <button onclick="ajouter('Chemise classique',5000)">
@@ -233,6 +249,22 @@ footer {
 
     <div class="product">
       <h3>Chemise premium</h3>
+      <label>Taille :</label>
+<select id="taille-premium">
+  <option value="S">S</option>
+  <option value="M">M</option>
+  <option value="L">L</option>
+  <option value="XL">XL</option>
+  <option value="XXL">XXL</option>
+</select>
+
+<label>Couleur :</label>
+<select id="couleur-premium">
+  <option value="Blanc">Blanc</option>
+  <option value="Noir">Noir</option>
+  <option value="Bleu">Bleu</option>
+  <option value="Rouge">Rouge</option>
+</select>
       <p>Un style élégant pour vos occasions importantes.</p>
       <p class="price">10 000 FCFA</p>
       <button onclick="ajouter('Chemise premium',10000)">
@@ -278,7 +310,25 @@ footer {
 let panier = [];
 
 function ajouter(nom, prix) {
-  let article = panier.find(p => p.nom === nom);
+function ajouter(nom, prix) {
+  let taille = "";
+  let couleur = "";
+
+  if(nom === "Chemise classique") {
+    taille = document.getElementById("taille-classique").value;
+    couleur = document.getElementById("couleur-classique").value;
+  }
+
+  if(nom === "Chemise premium") {
+    taille = document.getElementById("taille-premium").value;
+    couleur = document.getElementById("couleur-premium").value;
+  }
+
+  let article = panier.find(p =>
+    p.nom === nom &&
+    p.taille === taille &&
+    p.couleur === couleur
+  );
 
   if(article) {
     article.quantite++;
@@ -286,6 +336,8 @@ function ajouter(nom, prix) {
     panier.push({
       nom: nom,
       prix: prix,
+      taille: taille,
+      couleur: couleur,
       quantite: 1
     });
   }
@@ -293,6 +345,7 @@ function ajouter(nom, prix) {
   afficherPanier();
   alert(nom + " ajouté au panier !");
 }
+
 
 function supprimer(index) {
   panier.splice(index, 1);
@@ -313,14 +366,16 @@ function afficherPanier() {
       total += sousTotal;
 
       contenu.innerHTML += `
-        <div class="cart-item">
-          <strong>${article.nom}</strong><br>
-          ${article.prix.toLocaleString('fr-FR')} FCFA × ${article.quantite}
-          <br>
-          Sous-total : ${sousTotal.toLocaleString('fr-FR')} FCFA
-          <br>
-          <button onclick="supprimer(${index})">Supprimer</button>
-        </div>
+  <div class="cart-item">
+    <strong>${article.nom}</strong><br>
+    Taille : ${article.taille || "Non précisée"}<br>
+    Couleur : ${article.couleur || "Non précisée"}<br>
+    Prix : ${article.prix.toLocaleString('fr-FR')} FCFA × ${article.quantite}<br>
+    Sous-total : ${sousTotal.toLocaleString('fr-FR')} FCFA
+    <br>
+    <button onclick="supprimer(${index})">Supprimer</button>
+  </div>
+`;
       `;
     });
   }
@@ -355,23 +410,10 @@ function commander() {
   panier.forEach(article => {
     let sousTotal = article.prix * article.quantite;
     total += sousTotal;
-
-    message += "- " + article.nom +
-    " × " + article.quantite +
-    " = " + sousTotal.toLocaleString('fr-FR') +
-    " FCFA\n";
-  });
-
-  message += "\nTOTAL : " + total.toLocaleString('fr-FR') + " FCFA";
-
-  let numero = "237682306769";
-
-  let url = "https://wa.me/" + numero +
-  "?text=" + encodeURIComponent(message);
-
-  window.open(url, "_blank");
-}
-</script>
-
-</body>
-</html>
+message += "- " + article.nom +
+  " | Taille : " + (article.taille || "Non précisée") +
+  " | Couleur : " + (article.couleur || "Non précisée") +
+  " | Quantité : " + article.quantite +
+  " | Sous-total : " + sousTotal.toLocaleString('fr-FR') +
+  " FCFA\n";
+    
