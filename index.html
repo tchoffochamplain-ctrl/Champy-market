@@ -186,7 +186,7 @@ footer {
   header h1 {
     font-size: 27px;
   }
-
+}
   .product {
     width: 100%;
   }
@@ -194,7 +194,7 @@ footer {
   nav a {
     margin: 0 7px;
   }
-}
+
 </style>
 </head>
 
@@ -312,7 +312,7 @@ let panier = [];
 function ajouter(nom, prix) {
   let taille = "";
   let couleur = "";
-
+}
   if(nom === "Chemise classique") {
     taille = document.getElementById("taille-classique").value;
     couleur = document.getElementById("couleur-classique").value;
@@ -354,16 +354,16 @@ function supprimer(index) {
 function afficherPanier() {
   let contenu = document.getElementById("contenuPanier");
   let total = 0;
-
+}
   if(panier.length === 0) {
     contenu.innerHTML = "Votre panier est vide.";
   } else {
     contenu.innerHTML = "";
-
+}
     panier.forEach((article, index) => {
       let sousTotal = article.prix * article.quantite;
       total += sousTotal;
-
+}
       contenu.innerHTML += `
   <div class="cart-item">
     <strong>${article.nom}</strong><br>
@@ -388,7 +388,7 @@ function commander() {
     alert("Votre panier est vide !");
     return;
   }
-
+}
   let nom = document.getElementById("nom").value;
   let adresse = document.getElementById("adresse").value;
   let livraison = document.getElementById("livraison").value;
@@ -405,7 +405,7 @@ function commander() {
   message += "Ma commande :\n";
 
   let total = 0;
-
+  
   panier.forEach(article => {
     let sousTotal = article.prix * article.quantite;
     total += sousTotal;
@@ -415,4 +415,4 @@ message += "- " + article.nom +
   " | Quantité : " + article.quantite +
   " | Sous-total : " + sousTotal.toLocaleString('fr-FR') +
   " FCFA\n";
-    
+    }
